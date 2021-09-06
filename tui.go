@@ -37,19 +37,18 @@ type Model struct {
 	selected 			string   			// Which submission is selected
 }
 
-// Make a custom title from the submission
-func return_custom_title(submission Submission) string {
+// Make a custom title (and extra information for fainting effect) from the submission
+func return_custom_title(submission Submission) (string, string) {
 	// The submission time (Idk how to do something like Hacker New's one)
 	submission_time := time.Unix(time.Now().Unix() - int64(submission.Time), 0).Format("15:04 PM")
 
 	if submission.Type == "job" {
 		// If the submission is a 'job', then we don't need to print unnecessary information,
 		// we will just show the title, how old is it and the URL
-		return spf("%s (%s)", submission.Title, submission_time)
+		return submission.Title, spf("(%s)", submission_time)
 	} else {
-		return spf(
-			"%s (by %s | %d points | %s | %d comments)",
-			submission.Title,
+		return submission.Title, spf(
+			"(by %s | %d points | %s | %d comments)",
 			submission.By,
 			submission.Score,
 			submission_time,
@@ -142,7 +141,9 @@ func (m Model) View() string {
 		}
 
 		// Render the row
-		s += fmt.Sprintf("%s %s\n", cursor, return_custom_title(submissions[i]))
+		title, extra_info := return_custom_title(submissions[i])
+		extra_info = lipgloss.NewStyle().Faint(true).Render(" " + extra_info)
+		s += fmt.Sprintf("%s %s\n", cursor, title + extra_info)
 	}
 
 	// Footer (basically the help part)
