@@ -117,7 +117,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'c'? Open the comment section
 		case "c":
 			// Trigger xdg-open to open the comment section of the submission
-			cmd := exec.Command("xdg-open", spf("https://news.ycombinator.com/item?id=%s", m.submissions[m.cursor].ID))
+			cmd := exec.Command("xdg-open", spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
 			_, err := cmd.Output()
 
 			if err != nil {
