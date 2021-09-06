@@ -93,27 +93,6 @@ func (m Model) Init() tea.Cmd {
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
-	// Handle mouse event
-	case tea.MouseMsg:
-		// The response to input here is basically the same as to the keyboard
-		switch msg.Type {
-		case tea.MouseWheelUp:
-			if m.cursor > 0 {
-				m.cursor--
-			}
-
-		case tea.MouseWheelDown:
-			if m.cursor < len(m.submissions) - 1 {
-				m.cursor++
-			}
-
-		case tea.MouseLeft:
-			open_browser_with_url(m.submissions[m.cursor].URL)
-
-		case tea.MouseRight:
-			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
-		}
-
 	// Handle keyboard event
 	case tea.KeyMsg:
 		switch msg.String() {
