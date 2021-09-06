@@ -37,6 +37,18 @@ type Model struct {
 	selected 			string   			// Which submission is selected
 }
 
+// Open the browse with the URL
+func open_browser_with_url(url string) {
+	// Trigger xdg-open with the URL
+	cmd := exec.Command("browse", url)
+	_, err := cmd.Output()
+
+	// Report the error!
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 // Make a custom title (and extra information for fainting effect) from the submission
 func return_custom_title(submission Submission) (string, string) {
 	// The submission time (Idk how to do something like Hacker New's one)
@@ -67,6 +79,7 @@ func tui(submissions []Submission) {
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
+		tea.WithMouseAllMotion(),
 	)
 	if err := p.Start(); err != nil {
 		log.Fatalf("We got an error! %v", err)
@@ -80,8 +93,29 @@ func (m Model) Init() tea.Cmd {
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
+	// Handle mouse event
+	case tea.MouseMsg:
+		// The response to input here is basically the same as to the keyboard
+		switch msg.Type {
+		case tea.MouseWheelUp:
+			if m.cursor > 0 {
+				m.cursor--
+			}
+
+		case tea.MouseWheelDown:
+			if m.cursor < len(m.submissions) - 1 {
+				m.cursor++
+			}
+
+		case tea.MouseLeft:
+			open_browser_with_url(m.submissions[m.cursor].URL)
+
+		case tea.MouseRight:
+			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
+		}
+
+	// Handle keyboard event
 	case tea.KeyMsg:
-		
 		switch msg.String() {
 		// It is 'q', quit the program!
 		case "q":
@@ -102,26 +136,11 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Enter? Enter the web!
 		case "enter":
 			// Take the URL
-			m.selected = m.submissions[m.cursor].URL
-			
-			// Trigger xdg-open
-			cmd := exec.Command("xdg-open", m.selected)
-			_, err := cmd.Output()
-
-			// Report the error!
-			if err != nil {
-				log.Fatal(err)
-			}
-
+			open_browser_with_url(m.submissions[m.cursor].URL)
+		
 		// 'c'? Open the comment section
 		case "c":
-			// Trigger xdg-open to open the comment section of the submission
-			cmd := exec.Command("xdg-open", spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
-			_, err := cmd.Output()
-
-			if err != nil {
-				log.Fatal(err)
-			}
+			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
 		}
 	}
 
