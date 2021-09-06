@@ -1,17 +1,7 @@
 /*
 	This is Hecker, a Hacker News 'client' written in Go.
 	(Currently it is more like a scraper than a client)
-
-	This comment will contain the SLOC of Hecker over time
-	(contain comments and blank lines).
-
-	=====================================
-
-	Sunday, 5 September, 2021 - 111L -> 123L -> 121L -> 130L -> 152L
-	Monday, 6 September, 2021 - 153L -> 151L -> 150L -> 172L -> (add tui.go) -> 277L (+ tui.go) -> 253L
-	-> 259L -> (add utils.go) -> 267L
 */
-
 package main
 
 import (
