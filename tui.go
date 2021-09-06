@@ -169,7 +169,7 @@ func (m Model) View() string {
 	s += lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
-		Render("\n↑ - up · ↓ - down · q - quit · ⏎  (enter) - open · c - comment section")
+		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section")
 
 	// Send the UI for rendering
 	return s
