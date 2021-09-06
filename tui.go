@@ -113,6 +113,16 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if err != nil {
 				log.Fatal(err)
 			}
+
+		// 'c'? Open the comment section
+		case "c":
+			// Trigger xdg-open to open the comment section of the submission
+			cmd := exec.Command("xdg-open", spf("https://news.ycombinator.com/item?id=%s", m.submissions[m.cursor].ID))
+			_, err := cmd.Output()
+
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 
@@ -135,11 +145,11 @@ func (m Model) View() string {
 		s += fmt.Sprintf("%s %s\n", cursor, return_custom_title(submissions[i]))
 	}
 
-	// Footer
+	// Footer (basically the help part)
 	s += lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
-		Render("\n↑ - up · ↓ - down · q - quit · enter - open")
+		Render("\n↑ - up · ↓ - down · q - quit · enter - open · c - comment section")
 
 	// Send the UI for rendering
 	return s
