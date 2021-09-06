@@ -48,7 +48,7 @@ func return_custom_title(submission Submission) (string, string) {
 		return submission.Title, spf("(%s)", submission_time)
 	} else {
 		return submission.Title, spf(
-			"(%d points by %s %s | %d comments)",
+			"(%d points by %s | %s | %d comments)",
 			submission.Score,
 			submission.By,	
 			submission_time,
