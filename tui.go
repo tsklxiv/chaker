@@ -52,7 +52,7 @@ func open_browser_with_url(url string) {
 // Make a custom title (and extra information for fainting effect) from the submission
 func return_custom_title(submission Submission) (string, string) {
 	// The submission time (Idk how to do something like Hacker New's one)
-	submission_time := time.Unix(time.Now().Unix() - int64(submission.Time), 0).Format("15:04 PM")
+	submission_time := time.Unix(int64(submission.Time), 0).Format("15:04 PM")
 
 	if submission.Type == "job" {
 		// If the submission is a 'job', then we don't need to print unnecessary information,
