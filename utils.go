@@ -1,7 +1,7 @@
 /*
-	This file contains utilities commonly used in Hecker.
+	This file contains utilities for Hecker.
 
-	They are seperate to organize easier
+	They are seperate to organize easier.
 */
 package main
 
@@ -9,4 +9,5 @@ import (
 	"fmt"
 )
 
+// Shortcuts
 var spf = fmt.Sprintf
