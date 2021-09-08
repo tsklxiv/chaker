@@ -167,7 +167,7 @@ func (m Model) View() string {
 
 		// Render the row
 		title, extra_info := return_custom_title(submissions[i])
-		if !need_extra_info {
+		if need_extra_info {
 			// If the terminal has small width, then we just emptied the extra_info
 			extra_info = ""
 		} else {
