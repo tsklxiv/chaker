@@ -148,7 +148,7 @@ func (m Model) View() string {
 		// Is the cursor pointing at this title?
 		cursor := " " // No cursor
 		if m.cursor == i {
-			cursor = " > " // Yes cursor!
+			cursor = ">" // Yes cursor!
 		}
 
 		// Render the row
