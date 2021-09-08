@@ -38,20 +38,6 @@ type Model struct {
 	selected 			string   			// Which submission is selected
 }
 
-// Check if add the extra information to the title is necessary
-// This is useful when the user has a terminal with small width
-var need_extra_info bool = check_need_extra_info()
-
-// This is the function for the variable
-func check_need_extra_info() bool {
-	// The number 120 is based on nothing :P
-	if size.Col() < 120 {
-		return false
-	}
-
-	return true
-}
-
 // Open the browser with the URL
 func open_browser_with_url(url string) {
 	// To make sure that this works on other platforms, we need to use different commands
@@ -167,8 +153,8 @@ func (m Model) View() string {
 
 		// Render the row
 		title, extra_info := return_custom_title(submissions[i])
-		if need_extra_info {
-			// If the terminal has small width, then we just emptied the extra_info
+		// If the cursor is not pointing to this title, we won't need the extra_info
+		if m.cursor != i {
 			extra_info = ""
 		} else {
 			extra_info = lipgloss.NewStyle().Faint(true).Render(" " + extra_info)
