@@ -40,6 +40,9 @@ type Model struct {
 
 // Check if add the extra information to the title is necessary
 // This is useful when the user has a terminal with small width
+var need_extra_info bool = check_need_extra_info()
+
+// This is the function for the variable
 func check_need_extra_info() bool {
 	// The number 120 is based on nothing :P
 	if size.Col() < 120 {
@@ -164,7 +167,7 @@ func (m Model) View() string {
 
 		// Render the row
 		title, extra_info := return_custom_title(submissions[i])
-		if !check_need_extra_info() {
+		if !need_extra_info {
 			// If the terminal has small width, then we just emptied the extra_info
 			extra_info = ""
 		} else {
