@@ -152,12 +152,14 @@ func (m Model) View() string {
 		}
 
 		// Render the row
-		title, extra_info := return_custom_title(submissions[i])
+		title, extra_info := return_custom_title(submissions[i]) // Get the title and extra info
+		url_host := parse_url_host(submissions[i].URL) // Get the host of the URL
+
 		// If the cursor is not pointing to this title, we won't need the extra_info
 		if m.cursor != i {
 			extra_info = ""
 		} else {
-			extra_info = lipgloss.NewStyle().Faint(true).Render(" " + extra_info)
+			extra_info = lipgloss.NewStyle().Faint(true).Render(" " + url_host + " " + extra_info)
 		}
 		s += fmt.Sprintf("%s %s\n", cursor, title + extra_info)
 	}
