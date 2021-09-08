@@ -31,12 +31,6 @@ type Submission struct {
 var submissions []Submission = []Submission{}
 
 // Helper functions
-func check_err(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func check_status_code(msg string, res *http.Response) {
 	if res.StatusCode != 200 {
 		log.Fatalf("%s | %d %s", msg, res.StatusCode, res.Status)

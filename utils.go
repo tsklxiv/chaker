@@ -11,3 +11,10 @@ import (
 
 // Shortcuts
 var spf = fmt.Sprintf
+
+// Helper functions
+func check_err(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
