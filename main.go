@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/muesli/termenv"
 )
@@ -91,7 +91,7 @@ func main() {
 	termenv.ClearScreen()
 	termenv.AltScreen()
 
-	fmt.Println("Please be patient...")
+	fmt.Println("Waiting...")
 
 	s := Scrape()
 
