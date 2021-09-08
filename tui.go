@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -39,8 +40,20 @@ type Model struct {
 
 // Open the browse with the URL
 func open_browser_with_url(url string) {
-	// Trigger xdg-open with the URL
-	cmd := exec.Command("browse", url)
+	// To make sure that this works on other platforms, we need to use different commands
+	var browser_cmd string
+
+	// Detect the OS
+	os := runtime.GOOS
+	switch os {
+	case "windows": browser_cmd = "explorer"
+	case "darwin":  browser_cmd = "open" // Darwin aka Mac
+	case "linux": browser_cmd = "browse"
+	default: panic("Unknown OS: " + os)
+	}
+	
+	// Open the default browser with the URL
+	cmd := exec.Command(browser_cmd, url)
 	_, err := cmd.Output()
 
 	// Report the error!
