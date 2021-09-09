@@ -27,6 +27,9 @@ type Submission struct {
 	URL         string `json:"url"`
 }
 
+// The page number
+var page_num int = 1
+
 // List of links and titles (For feeding the TUI part)
 var submissions []Submission = []Submission{}
 
@@ -37,9 +40,9 @@ func check_status_code(msg string, res *http.Response) {
 	}
 }
 
-func Scrape() []Submission {
+func Scrape(page int) []Submission {
 	// Scrape the news
-	res, err := http.Get("https://news.ycombinator.com/news")
+	res, err := http.Get(spf("https://news.ycombinator.com/news?p=%d", page_num))
 	check_err(err)
 	defer res.Body.Close()
 	check_status_code("Status code error", res)
@@ -87,7 +90,7 @@ func main() {
 
 	fmt.Println("Waiting...")
 
-	s := Scrape()
+	s := Scrape(page_num)
 
 	tui(s)
 }

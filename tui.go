@@ -5,7 +5,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -133,6 +132,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'c'? Open the comment section
 		case "c":
 			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
+
+		// 'm'? Next page, please!
+		case "m":
+			page_num += 1
+			s := Scrape(page_num)
+			tui(s)
 		}
 	}
 
@@ -142,7 +147,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m Model) View() string {
 	// Header
 	s := render(spf("Today is %s\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
-	s += "\nTop Submissions:\n"
+	s += "\nSubmissions:\n"
 
 	for i := range m.submissions {
 		// Is the cursor pointing at this title?
@@ -161,8 +166,10 @@ func (m Model) View() string {
 		} else {
 			extra_info = lipgloss.NewStyle().Faint(true).Render(spf("%s %s", url_host, extra_info))
 		}
-		s += fmt.Sprintf("%s %s %s\n", cursor, title, extra_info)
+		s += spf("%s %s %s\n", cursor, title, extra_info)
 	}
+
+	s += spf("You are at page %d", page_num)
 
 	// Footer (basically the help part)
 	s += lipgloss.NewStyle().
