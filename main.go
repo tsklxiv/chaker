@@ -37,7 +37,7 @@ func check_status_code(msg string, res *http.Response) {
 	}
 }
 
-func Scrape() []Submission {	
+func Scrape() []Submission {
 	// Scrape the news
 	res, err := http.Get("https://news.ycombinator.com/news")
 	check_err(err)
