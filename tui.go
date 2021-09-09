@@ -91,7 +91,6 @@ func tui(submissions []Submission) {
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
-		tea.WithMouseAllMotion(),
 	)
 	if err := p.Start(); err != nil {
 		log.Fatalf("We got an error! %v", err)
