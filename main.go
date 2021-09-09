@@ -41,6 +41,12 @@ func check_status_code(msg string, res *http.Response) {
 }
 
 func Scrape(page int) []Submission {
+	// Add some text and visual effects before we actually scraping
+	termenv.ClearScreen()
+	termenv.AltScreen()
+
+	fmt.Println("Waiting...")
+
 	// Scrape the news
 	res, err := http.Get(spf("https://news.ycombinator.com/news?p=%d", page_num))
 	check_err(err)
@@ -81,15 +87,13 @@ func Scrape(page int) []Submission {
 		submissions = append(submissions, submission) 
 	})
 
+	// Exit the alt screen
+	termenv.ExitAltScreen()
+
 	return submissions
 }
 
-func main() {
-	termenv.ClearScreen()
-	termenv.AltScreen()
-
-	fmt.Println("Waiting...")
-
+func main() {	
 	s := Scrape(page_num)
 
 	tui(s)
