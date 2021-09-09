@@ -159,9 +159,9 @@ func (m Model) View() string {
 		if m.cursor != i {
 			extra_info = ""
 		} else {
-			extra_info = lipgloss.NewStyle().Faint(true).Render(" " + url_host + " " + extra_info)
+			extra_info = lipgloss.NewStyle().Faint(true).Render(spf("%s %s", url_host, extra_info))
 		}
-		s += fmt.Sprintf("%s %s\n", cursor, title + extra_info)
+		s += fmt.Sprintf("%s %s %s\n", cursor, title, extra_info)
 	}
 
 	// Footer (basically the help part)
