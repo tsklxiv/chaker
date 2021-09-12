@@ -16,12 +16,6 @@ import (
 	"github.com/olekukonko/ts"
 )
 
-// Initial model
-var initialModel Model = Model {
-		submissions: submissions,
-		selected: "",
-	}
-
 // Terminal size
 var size, _ = ts.GetSize()
 
@@ -88,7 +82,13 @@ func return_custom_title(submission Submission) (string, string) {
 }
 
 // The main function
-func tui() {
+func tui(s []Submission) {
+	// Initial model
+	var initialModel Model = Model {
+		submissions: submissions,
+		selected: "",
+	}
+
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
