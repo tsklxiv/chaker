@@ -42,11 +42,6 @@ type Model struct {
 	selected 			string   			// Which submission is selected
 }
 
-// Initial model
-var initialModel Model = Model {
-	selected: "",
-}
-
 // Open the browser with the URL
 func open_browser_with_url(url string) {
 	// To make sure that this works on other platforms, we need to use different commands
@@ -92,7 +87,12 @@ func return_custom_title(submission Submission) (string, string) {
 }
 
 // The main function
-func tui(s []Submission) {
+func tui() {	
+	// Initial model
+	var initialModel Model = Model {
+		selected: "",
+	}
+
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
