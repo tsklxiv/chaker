@@ -38,14 +38,12 @@ var render = style.Render
 
 // The Model
 type Model struct {
-	submissions   []Submission  // List of submission
 	cursor   			int      			// Which submission is our cursor pointing at
 	selected 			string   			// Which submission is selected
 }
 
 // Initial model
 var initialModel Model = Model {
-	submissions: submissions,
 	selected: "",
 }
 
@@ -95,8 +93,6 @@ func return_custom_title(submission Submission) (string, string) {
 
 // The main function
 func tui(s []Submission) {
-	initialModel.submissions = s
-
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
@@ -128,7 +124,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		// A Down? Fall down!
 		case "down":
-			if m.cursor < len(m.submissions) - 1 {
+			if m.cursor < len(submissions) - 1 {
 				m.cursor++
 			}
 
@@ -156,7 +152,7 @@ func (m Model) View() string {
 	// Header
 	s := render(spf("Today is %s", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
 
-	for i := range m.submissions {
+	for i := range submissions {
 		// Is the cursor pointing at this title?
 		cursor := " " // No cursor
 		if m.cursor == i {
