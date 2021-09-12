@@ -92,7 +92,7 @@ func tui(s []Submission) {
 	// Initial model
 	var initialModel Model = Model {
 		submissions: submissions,
-		cursor: 1, // Prevent the cursor from disappearing when go up to the top
+		cursor: 1,
 		selected: "",
 	}
 
@@ -134,11 +134,11 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Enter? Enter the web!
 		case "enter":
 			// Take the URL
-			open_browser_with_url(m.submissions[m.cursor].URL)
+			open_browser_with_url(m.submissions[m.cursor - 1].URL)
 		
 		// 'c'? Open the comment section
 		case "c":
-			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
+			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor - 1].ID))
 		
 		// 'm'? Next page, please!
 		case "m":
@@ -153,7 +153,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m Model) View() string {
 	// Header
-	s := render(spf("Today is %s\nSubmissions:\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
+	s := render(spf("Today is %s", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
 
 	for i := range m.submissions {
 		// Is the cursor pointing at this title?
