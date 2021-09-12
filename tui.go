@@ -20,7 +20,7 @@ import (
 var help string = lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
-		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
+		Render("↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
 
 // Terminal size
 var size, _ = ts.GetSize()
@@ -171,11 +171,8 @@ func (m Model) View() string {
 		}
 		s += spf("%s %s %s\n", cursor, title, extra_info)
 	}
-	// Show user the page where they are
-	s += spf("You are at page %d", page_num)
-
-	// Footer (basically the help part)
-	s += help
+	// Footer (the page where the user are in and help)
+	s += spf("You are at page %d %s", page_num, help)
 
 	// Send the UI for rendering
 	return s
