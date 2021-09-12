@@ -16,6 +16,12 @@ import (
 	"github.com/olekukonko/ts"
 )
 
+// Initial model
+var initialModel Model = Model {
+		submissions: submissions,
+		selected: "",
+	}
+
 // Terminal size
 var size, _ = ts.GetSize()
 
@@ -82,12 +88,7 @@ func return_custom_title(submission Submission) (string, string) {
 }
 
 // The main function
-func tui(submissions []Submission) {
-	initialModel := Model {
-		submissions: submissions,
-		selected: "",
-	}
-
+func tui() {
 	p := tea.NewProgram(
 		initialModel,
 		tea.WithAltScreen(),
@@ -131,13 +132,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'c'? Open the comment section
 		case "c":
 			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
-
+		
 		// 'm'? Next page, please!
 		case "m":
 			page_num += 1
 			submissions = []Submission{} // Wipe out the prev. submissions to avoid overload
-			s := Scrape(page_num)
-			tui(s)
+			submissions = Scrape(page_num) // Scrape fresh data
 		}
 	}
 
@@ -175,7 +175,7 @@ func (m Model) View() string {
 	s += lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
-		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section")
+		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
 
 	// Send the UI for rendering
 	return s
