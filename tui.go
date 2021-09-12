@@ -135,11 +135,11 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Enter? Enter the web!
 		case "enter":
 			// Take the URL
-			open_browser_with_url(m.submissions[m.cursor].URL)
+			open_browser_with_url(submissions[m.cursor].URL)
 		
 		// 'c'? Open the comment section
 		case "c":
-			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
+			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", submissions[m.cursor].ID))
 		
 		// 'm'? Next page, please!
 		case "m":
