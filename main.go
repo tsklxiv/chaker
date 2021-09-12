@@ -93,6 +93,7 @@ func Scrape(page int) []Submission {
 	return submissions
 }
 
-func main() {	
+func main() {
+	submissions = Scrape(page_num)
 	tui()
 }
