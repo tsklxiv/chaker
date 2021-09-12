@@ -92,7 +92,6 @@ func tui(s []Submission) {
 	// Initial model
 	var initialModel Model = Model {
 		submissions: submissions,
-		cursor: 1,
 		selected: "",
 	}
 
@@ -134,11 +133,11 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Enter? Enter the web!
 		case "enter":
 			// Take the URL
-			open_browser_with_url(m.submissions[m.cursor - 1].URL)
+			open_browser_with_url(m.submissions[m.cursor].URL)
 		
 		// 'c'? Open the comment section
 		case "c":
-			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor - 1].ID))
+			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", m.submissions[m.cursor].ID))
 		
 		// 'm'? Next page, please!
 		case "m":
