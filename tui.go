@@ -143,8 +143,16 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			page_num += 1
 			submissions = []Submission{}
 			submissions = Scrape(page_num) // Scrape fresh data
-		}
+
+		// The same as 'm', but previous page, and also checks if page_num is larger than 0
+		case "p":
+			if page_num > 1 {
+				page_num -= 1
+				submissions = []Submission{}
+				submissions = Scrape(page_num) // Scrape fresh data
+			}
 	}
+}
 
 	return m, nil
 }
