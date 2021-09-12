@@ -114,7 +114,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		// An Up? Fly up!
 		case "up":
-			if m.cursor > 0 {
+			if m.cursor > 1 {
 				m.cursor--
 			}
 
@@ -147,7 +147,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m Model) View() string {
 	// Header
 	s := render(spf("Today is %s\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
-	// s += "Submissions:\n"
 
 	for i := range m.submissions {
 		// Is the cursor pointing at this title?
@@ -168,11 +167,10 @@ func (m Model) View() string {
 		}
 		s += spf("%s %s %s\n", cursor, title, extra_info)
 	}
-
+	// Show user the page where they are
 	s += spf("You are at page %d", page_num)
 
 	// Footer (basically the help part)
-	s += spf("Hecker version %s", VERSION)
 	s += lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
