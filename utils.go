@@ -11,6 +11,9 @@ import (
 	"log"
 )
 
+// Constant data
+const VERSION = "0.1"
+
 // Shortcuts
 var spf = fmt.Sprintf
 

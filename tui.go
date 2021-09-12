@@ -172,6 +172,7 @@ func (m Model) View() string {
 	s += spf("You are at page %d", page_num)
 
 	// Footer (basically the help part)
+	s += spf("Hecker version %s", VERSION)
 	s += lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
