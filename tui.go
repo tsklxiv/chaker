@@ -144,6 +144,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'm'? Next page, please!
 		case "m":
 			page_num += 1
+			submissions = []Submission{}
 			submissions = Scrape(page_num) // Scrape fresh data
 		}
 	}
