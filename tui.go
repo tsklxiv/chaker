@@ -135,6 +135,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'm'? Next page, please!
 		case "m":
 			page_num += 1
+			submissions = []Submission{} // Wipe out the prev. submissions to avoid overload
 			s := Scrape(page_num)
 			tui(s)
 		}
