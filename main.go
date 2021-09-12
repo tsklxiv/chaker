@@ -94,7 +94,5 @@ func Scrape(page int) []Submission {
 }
 
 func main() {	
-	s := Scrape(page_num)
-
-	tui(s)
+	tui()
 }
