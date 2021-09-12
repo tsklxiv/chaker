@@ -146,7 +146,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m Model) View() string {
 	// Header
 	s := render(spf("Today is %s\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
-	s += "\nSubmissions:\n"
+	s += "Submissions:\n"
 
 	for i := range m.submissions {
 		// Is the cursor pointing at this title?
