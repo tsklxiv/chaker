@@ -90,6 +90,7 @@ func return_custom_title(submission Submission) (string, string) {
 func tui() {	
 	// Initial model
 	var initialModel Model = Model {
+		cursor: 1,
 		selected: "",
 	}
 
@@ -133,7 +134,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// Take the URL
 			open_browser_with_url(submissions[m.cursor].URL)
 		
-		// 'c'? Open the comment section
+		// 'c'? Open the comment section of the title in the cursor!
 		case "c":
 			open_browser_with_url(spf("https://news.ycombinator.com/item?id=%d", submissions[m.cursor].ID))
 		
