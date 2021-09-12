@@ -20,7 +20,7 @@ import (
 var help string = lipgloss.NewStyle().
 		Faint(true).
 		Bold(true).
-		Render("↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
+		Render("↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev")
 
 // Terminal size
 var size, _ = ts.GetSize()
