@@ -16,6 +16,12 @@ import (
 	"github.com/olekukonko/ts"
 )
 
+// Help line
+var help string = lipgloss.NewStyle().
+		Faint(true).
+		Bold(true).
+		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
+
 // Terminal size
 var size, _ = ts.GetSize()
 
@@ -172,10 +178,7 @@ func (m Model) View() string {
 	s += spf("You are at page %d", page_num)
 
 	// Footer (basically the help part)
-	s += lipgloss.NewStyle().
-		Faint(true).
-		Bold(true).
-		Render("\n↑ - up · ↓ - down · q - quit · ⏎  - open · c - comment section · m - more · p - prev (TODO)")
+	// s += help
 
 	// Send the UI for rendering
 	return s
