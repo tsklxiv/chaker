@@ -43,6 +43,12 @@ type Model struct {
 	selected 			string   			// Which submission is selected
 }
 
+// Initial model
+var initialModel Model = Model {
+	submissions: submissions,
+	selected: "",
+}
+
 // Open the browser with the URL
 func open_browser_with_url(url string) {
 	// To make sure that this works on other platforms, we need to use different commands
@@ -89,11 +95,7 @@ func return_custom_title(submission Submission) (string, string) {
 
 // The main function
 func tui(s []Submission) {
-	// Initial model
-	var initialModel Model = Model {
-		submissions: submissions,
-		selected: "",
-	}
+	initialModel.submissions = s
 
 	p := tea.NewProgram(
 		initialModel,
@@ -142,7 +144,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// 'm'? Next page, please!
 		case "m":
 			page_num += 1
-			submissions = []Submission{} // Wipe out the prev. submissions to avoid overload
 			submissions = Scrape(page_num) // Scrape fresh data
 		}
 	}
