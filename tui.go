@@ -150,7 +150,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m Model) View() string {
 	// Header
-	s := render(spf("Today is %s", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
+	s := render(spf("Today is %s\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
 
 	for i := range submissions {
 		// Is the cursor pointing at this title?
@@ -175,7 +175,7 @@ func (m Model) View() string {
 	s += spf("You are at page %d", page_num)
 
 	// Footer (basically the help part)
-	// s += help
+	s += help
 
 	// Send the UI for rendering
 	return s
