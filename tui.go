@@ -47,8 +47,8 @@ func open_browser_with_url(url string) {
 	switch os {
 	case "windows": browser_cmd = "explorer"
 	case "darwin":  browser_cmd = "open" // Darwin aka Mac
-	case "linux": browser_cmd = "browse"
-	default: panic("Unknown OS: " + os)
+	case "linux":   browser_cmd = "browse"
+	default:        panic("Unknown OS: " + os)
 	}
 	
 	// Open the default browser with the URL
@@ -86,6 +86,7 @@ func tui(s []Submission) {
 	// Initial model
 	var initialModel Model = Model {
 		submissions: submissions,
+		cursor: 1, // Prevent the cursor from disappearing when go up to the top
 		selected: "",
 	}
 
@@ -146,7 +147,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m Model) View() string {
 	// Header
-	s := render(spf("Today is %s\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
+	s := render(spf("Today is %s\nSubmissions:\n", time.Now().Format("Monday, January 2, 2006, at 15:04 PM")))
 
 	for i := range m.submissions {
 		// Is the cursor pointing at this title?
