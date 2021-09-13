@@ -1,4 +1,5 @@
-<h1 align="center" class="header">Chaker</h1>
+<h1 align="center" class="header">Chaker</h1><br>
+
 <p align="center" class="desc">
   The Hacker News 'client' in the terminal. Written in Golang.
 </p>
