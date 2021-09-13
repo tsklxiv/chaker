@@ -1,4 +1,6 @@
-<h1 align="center" class="header">Chaker</h1>
+<h1 align="center" class="header">Chaker</h1><br>
+![GitHub Repo stars](https://img.shields.io/github/stars/HoangTuan110/chaker?style=for-the-badge)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 <p align="center" class="desc">
   The Hacker News 'client' in the terminal. Written in Golang.
 </p>
