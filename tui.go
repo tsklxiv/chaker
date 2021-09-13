@@ -1,5 +1,5 @@
 /*
-	This file contains the TUI code for Hecker.
+	This file contains the TUI code for Chaker.
 */
 
 package main

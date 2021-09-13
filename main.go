@@ -1,5 +1,5 @@
 /*
-	This is Hecker, a Hacker News 'client' written in Go.
+	This is Chaker (previously known as Hecker), a Hacker News 'client' written in Go.
 	(Currently it is more like a scraper than a client)
 */
 package main
