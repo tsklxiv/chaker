@@ -44,8 +44,18 @@ git clone https://github.com/HoangTuan110/chaker.git
 cd chaker
 go build
 ```
-* Finally, you will see the `chaker` binary in the cloned directory. Run that binary will also run `chaker`.
+* Finally, you will see the `chaker` binary in the cloned directory.
 
+## Usage
+
+Just run:
+
+```sh
+./chaker
+```
+
+## Note
+* When start the program, you will need to wait for a few seconds for the program to scrape data.
 
 ## Credits
 
