@@ -9,6 +9,8 @@
 - [Features](#features)
 - [Contributions and Issues](#contributions-and-issues)
 - [Installation](#installation)
+- [Usage](#usage)
+- [Note](#note)
 - [Credits](#credits)
 
 ## Introduction
