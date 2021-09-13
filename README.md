@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Chaker (formerly known as Hecker) is a Hacker News 'client' for the terminal written in Golang.
+Chaker (formerly Hecker) is a Hacker News 'client' for the terminal written in Golang.
 
 (The client is in quote because technially this is more of a web scraper with a UI rather than an actual client)
 
