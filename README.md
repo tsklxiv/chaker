@@ -44,8 +44,10 @@ go get github.com/HoangTuan110/chaker
 ```
   And if you don't:
 ```sh
-git clone https://github.com/HoangTuan110/chaker.git
+git clone https://github.com/HoangTuan110/chaker.git # Clone the repo
 cd chaker
+go mod init chaker # Initialize the package
+go mod tidy
 go build
 ```
 * Finally, you will see the `chaker` binary in the cloned directory.
