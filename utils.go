@@ -1,5 +1,5 @@
 /*This file contains utilities for Chaker.
-	They are seperate to organize easier.
+	They are separate to organize easier.
 */
 package main
 
