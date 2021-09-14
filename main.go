@@ -1,6 +1,5 @@
 /*
-	This is Chaker (previously known as Hecker), a Hacker News 'client' written in Go.
-	(Currently it is more like a scraper than a client)
+	This is Chaker (formerly Hecker), a Hacker News 'client' written in Go.
 */
 package main
 
@@ -14,7 +13,7 @@ import (
 	"github.com/muesli/termenv"
 )
 
-// The submission's data struct
+// The submission
 type Submission struct {
 	By          string `json:"by"`
 	Descendants int    `json:"descendants"`
@@ -27,7 +26,7 @@ type Submission struct {
 	URL         string `json:"url"`
 }
 
-// The page number
+// Page number
 var page_num int = 1
 
 // List of links and titles (For feeding the TUI part)
@@ -41,13 +40,13 @@ func check_status_code(msg string, res *http.Response) {
 }
 
 func Scrape(page int) []Submission {
-	// Add some text and visual effects before we actually scraping
+	// Add some text and visual effects before we actually scrape
 	termenv.ClearScreen()
 	termenv.AltScreen()
 
 	fmt.Println("Waiting...")
 
-	// Scrape the news
+	// Scrape the news at the page number 'page_num'
 	res, err := http.Get(spf("https://news.ycombinator.com/news?p=%d", page_num))
 	check_err(err)
 	defer res.Body.Close()
@@ -62,7 +61,7 @@ func Scrape(page int) []Submission {
 		// Take the ID of the submission (very important for scraping the submissions data)
 		id, _ := s.Attr("id")
 
-		// Scrape the submissions data using the ID from Hacker New's Firebase DB
+		// Scrape the submissions data using the ID from Hacker New's Firebase database
 		json_res, err := http.Get(spf("https://hacker-news.firebaseio.com/v0/item/%s.json?print=pretty", id))
 		check_err(err)
 		defer json_res.Body.Close()
