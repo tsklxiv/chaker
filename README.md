@@ -1,5 +1,4 @@
-<h1 align="center" class="header">Chaker</h1><br>
-
+<h1 align="center" class="header">Chaker</h1>
 <p align="center" class="desc">
   The Hacker News 'client' in the terminal. Written in Golang.
 </p>
@@ -14,6 +13,7 @@
 - [Credits](#credits)
 
 ## Introduction
+[![CodeFactor](https://www.codefactor.io/repository/github/hoangtuan110/chaker/badge)](https://www.codefactor.io/repository/github/hoangtuan110/chaker)
 
 Chaker (formerly Hecker) is a Hacker News 'client' for the terminal written in Golang.
 
