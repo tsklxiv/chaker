@@ -1,6 +1,4 @@
-/*
-	This file contains utilities for Chaker.
-
+/*This file contains utilities for Chaker.
 	They are seperate to organize easier.
 */
 package main
@@ -18,16 +16,16 @@ const VERSION = "0.1"
 var spf = fmt.Sprintf
 
 // Helper functions
-func check_err(err error) {
+func checkErr(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 // Get the host of the URL
-func parse_url_host(input string) string {
+func parseURLHost(input string) string {
 	u, err := url.Parse(input)
-	check_err(err)
+	checkErr(err)
 
 	return u.Hostname()
 }
