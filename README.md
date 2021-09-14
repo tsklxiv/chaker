@@ -1,6 +1,6 @@
 <h1 align="center" class="header">Chaker</h1>
 <p align="center" class="desc">
-  The Hacker News 'client' in the terminal. Written in Golang.
+  The Hacker News 'client' for the terminal. Written in Golang.
 </p>
 
 ## Table of Content
