@@ -19,7 +19,7 @@ jobs:
         go-version: 1.16
 
     - name: Build the program
-      run: go build -v ./...
+      run: go build -v /home/runner/work/chaker/chaker
       
     - name: Run the program
-      run: ./../../chaker
+      run: /home/runner/work/chaker/chaker/chaker
