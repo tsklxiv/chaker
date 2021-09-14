@@ -20,6 +20,3 @@ jobs:
 
     - name: Build the program
       run: cd /home/runner/work/chaker/chaker; go mod init chaker; go mod tidy; go build -v
-      
-    - name: Run the program
-      run: /home/runner/work/chaker/chaker/chaker
