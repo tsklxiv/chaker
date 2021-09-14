@@ -170,6 +170,15 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				itsSearchBarTime = !itsSearchBarTime
 			}
 		}
+	} else {
+		// This is the second input, in case the program is in the search bar time
+		switch msg := msg.(type) {
+		case tea.KeyMsg:
+			switch msg.String() {
+			case "s":
+				itsSearchBarTime = !itsSearchBarTime
+			}
+		}
 	}
 
 	return m, nil
