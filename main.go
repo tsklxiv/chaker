@@ -76,14 +76,14 @@ func Scrape(page int) []Submission {
 		// Unmarshal the JSON data to Submission
 		err = json.Unmarshal([]byte(json_data), &submission)
 		check_err(err)
-		
+
 		// In case that the submission doesn't have an URL (like with a local post and not a link)
 		// We will just give the post link instead
 		if submission.URL == "" {
 			submission.URL = spf("https://news.ycombinator.com/item?id=%s", id)
 		}
 
-		submissions = append(submissions, submission) 
+		submissions = append(submissions, submission)
 	})
 
 	// Exit the alt screen
