@@ -13,9 +13,7 @@
 - [Credits](#credits)
 
 ## Introduction
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-
-[![CodeFactor](https://www.codefactor.io/repository/github/hoangtuan110/chaker/badge)](https://www.codefactor.io/repository/github/hoangtuan110/chaker)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![CodeFactor](https://www.codefactor.io/repository/github/hoangtuan110/chaker/badge)](https://www.codefactor.io/repository/github/hoangtuan110/chaker)
 
 Chaker (formerly Hecker) is a Hacker News 'client' for the terminal written in Golang.
 
