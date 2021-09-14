@@ -16,6 +16,12 @@ import (
 	"github.com/olekukonko/ts"
 )
 
+// The search bar
+var searchBarContent string = ""
+
+// It's search bar time!
+var itsSearchBarTime bool = false
+
 // Help line
 var help string = lipgloss.NewStyle().
 	Faint(true).
@@ -71,6 +77,7 @@ func openBrowserWithURL(url string) {
 }
 
 // Make a custom title (and extra information for fainting effect) from the submission
+// This is meant to be in main.go, but for the fainting effect, it has to be move here.
 func returnCustomTitle(submission Submission) (string, string) {
 	// The submission time (Idk how to do something like Hacker New's one)
 	submissionTime := time.Unix(int64(submission.Time), 0).Format("15:04 PM")
@@ -115,47 +122,52 @@ func (m Model) Init() tea.Cmd {
 
 // Update the app
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
-	// Handle keyboard event
-	case tea.KeyMsg:
-		switch msg.String() {
-		// It is 'q', quit the program!
-		case "q":
-			return m, tea.Quit
+	if !itsSearchBarTime {
+		switch msg := msg.(type) {
+		// Handle keyboard event
+		case tea.KeyMsg:
+			switch msg.String() {
+			// It is 'q', quit the program!
+			case "q":
+				return m, tea.Quit
 
-		// An Up? Fly up!
-		case "up":
-			if m.cursor > 1 {
-				m.cursor--
-			}
+			// An Up? Fly up!
+			case "up":
+				if m.cursor > 1 {
+					m.cursor--
+				}
 
-		// A Down? Fall down!
-		case "down":
-			if m.cursor < len(submissions)-1 {
-				m.cursor++
-			}
+			// A Down? Fall down!
+			case "down":
+				if m.cursor < len(submissions)-1 {
+					m.cursor++
+				}
 
-		// Enter? Enter the web!
-		case "enter":
-			// Take the URL
-			openBrowserWithURL(submissions[m.cursor].URL)
+			// Enter? Enter the web!
+			case "enter":
+				openBrowserWithURL(submissions[m.cursor].URL)
 
-		// 'c'? Open the comment section of the title in the cursor!
-		case "c":
-			openBrowserWithURL(spf("https://news.ycombinator.com/item?id=%d", submissions[m.cursor].ID))
+			// 'c'? Open the comment section of the title in the cursor!
+			case "c":
+				openBrowserWithURL(spf("https://news.ycombinator.com/item?id=%d", submissions[m.cursor].ID))
 
-		// 'm'? Next page, please!
-		case "m":
-			pageNum++
-			submissions = []Submission{}
-			submissions = Scrape(pageNum) // Scrape fresh data
-
-		// The same as 'm', but previous page, and also checks if pageNum is larger than 1 to prevent go to page 0
-		case "p":
-			if pageNum > 1 {
-				pageNum--
+			// 'm'? Next page, please!
+			case "m":
+				pageNum++
 				submissions = []Submission{}
 				submissions = Scrape(pageNum) // Scrape fresh data
+
+			// Same as 'm', but previous page, and also checks if pageNum is larger than 1 to prevent go to page 0
+			case "p":
+				if pageNum > 1 {
+					pageNum--
+					submissions = []Submission{}
+					submissions = Scrape(pageNum) // Scrape fresh data
+				}
+
+			// The 's'? It's seaarch bar time!
+			case "s":
+				itsSearchBarTime = !itsSearchBarTime
 			}
 		}
 	}
