@@ -46,13 +46,13 @@ func Scrape(page int) []Submission {
 
 	// Scrape the news at the page number 'pageNum'
 	res, err := http.Get(spf("https://news.ycombinator.com/news?p=%d", pageNum))
-	check_err(err)
+	checkErr(err)
 	defer res.Body.Close()
 	checkStatusCode("Status code error", res)
 
 	// Create a document for scraping
 	doc, err := goquery.NewDocumentFromReader(res.Body)
-	check_err(err)
+	checkErr(err)
 
 	// Scrape the submissions
 	doc.Find("tr .athing").Each(func(i int, s *goquery.Selection) {
@@ -61,19 +61,19 @@ func Scrape(page int) []Submission {
 
 		// Scrape the submissions data using the ID from Hacker New's Firebase database
 		jsonRes, err := http.Get(spf("https://hacker-news.firebaseio.com/v0/item/%s.json?print=pretty", id))
-		check_err(err)
+		checkErr(err)
 		defer jsonRes.Body.Close()
 		checkStatusCode(spf("Cannot scrape data of ID %s", id), jsonRes)
 
 		doc, err := goquery.NewDocumentFromReader(jsonRes.Body)
-		check_err(err)
+		checkErr(err)
 		jsonData := doc.Children().Text()
 
 		var submission Submission
 
 		// Unmarshal the JSON data to Submission
 		err = json.Unmarshal([]byte(jsonData), &submission)
-		check_err(err)
+		checkErr(err)
 
 		// In case that the submission doesn't have an URL (like with a local post and not a link)
 		// We will just give the post link instead
