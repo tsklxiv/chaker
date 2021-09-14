@@ -55,7 +55,7 @@ func Scrape(page int) []Submission {
 	checkErr(err)
 
 	// Scrape the submissions
-	doc.Find("tr .athing").Each(func(i int, s *goquery.Selection) {
+	doc.Find("tr .athing").Each(func(_ int, s *goquery.Selection) {
 		// Take the ID of the submission (very important for scraping the submissions data)
 		id, _ := s.Attr("id")
 
