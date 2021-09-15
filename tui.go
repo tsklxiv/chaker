@@ -6,6 +6,7 @@ package main
 
 import (
 	"log"
+//	"math"
 	"os"
 	"os/exec"
 	"runtime"
@@ -71,10 +72,9 @@ func openBrowserWithURL(url string) {
 }
 
 // Make a custom title (and extra information for fainting effect) from the submission
-// This is meant to be in main.go, but for the fainting effect, it has to be move here.
 func returnCustomTitle(submission Submission) (string, string) {
-	// The submission time (Idk how to do something like Hacker New's one)
-	submissionTime := time.Unix(int64(submission.Time), 0).Format("15:04 PM")
+	// The submission time (Similiar to Hacker News)
+	submissionTime := int64(time.Since(time.Unix(int64(submission.Time), 0)).Hours())
 
 	if submission.Type == "job" {
 		// If the submission is a 'job', then we don't need to print unnecessary information,
@@ -83,7 +83,7 @@ func returnCustomTitle(submission Submission) (string, string) {
 	}
 
 	return submission.Title, spf(
-		"(%d points by %s | %s | %d comments)",
+		"(%d points by %s | %d | %d comments)",
 		submission.Score,
 		submission.By,
 		submissionTime,
