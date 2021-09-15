@@ -6,7 +6,6 @@ package main
 
 import (
 	"log"
-//	"math"
 	"os"
 	"os/exec"
 	"runtime"
