@@ -32,9 +32,9 @@ Chaker (formerly Hecker) is a Hacker News 'client' for the terminal written in G
 * Shows up submission's data (like upvote and so on) only when they are being pointed and fainted.
 * Shows up the time on the top, and the page number and help at the bottom!
 
-## Contributions and Issues
+## Contributions
 
-Pull requrests and contributions are welcome. If you found any bugs or want to requrest a feature, please open an issue.
+Contributions are welcome. If you found any bugs or want to requrest a feature, please open an issue.
 
 ## Installation
 
