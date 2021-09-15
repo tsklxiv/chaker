@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/muesli/termenv"
@@ -44,8 +45,13 @@ func Scrape(page int) []Submission {
 
 	fmt.Println("Waiting...")
 
+	// Setup a client
+	client := http.Client{
+		Timeout: 1 * time.Minute,
+	}
+
 	// Scrape the news at the page number 'pageNum'
-	res, err := http.Get(spf("https://news.ycombinator.com/news?p=%d", pageNum))
+	res, err := client.Get(spf("https://news.ycombinator.com/news?p=%d", pageNum))
 	checkErr(err)
 	defer res.Body.Close()
 	checkStatusCode("Status code error", res)
