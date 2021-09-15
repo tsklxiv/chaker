@@ -27,7 +27,7 @@ Chaker (formerly Hecker) is a Hacker News 'client' for the terminal written in G
 * Move between submissions easily with Up and Down arrow key.
 * Open the submission's URL using `Enter`.
 * View the comment section (or more correctly the submission itself) using `c`.
-* Submission time similiar to HN.
+* Submission time similiar to HN. (Pleasse see [Note](#note))
 * Move between different pages of submissions.
 * Shows up submission's data (like upvote and so on) only when they are being pointed and fainted.
 * Shows up the time on the top, and the page number and help at the bottom!
