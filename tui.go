@@ -79,11 +79,11 @@ func returnCustomTitle(submission Submission) (string, string) {
 	if submission.Type == "job" {
 		// If the submission is a 'job', then we don't need to print unnecessary information,
 		// we will just show the title, how old is it and the URL
-		return submission.Title, spf("(%s)", submissionTime)
+		return submission.Title, spf("(%d hour ago)", submissionTime)
 	}
 
 	return submission.Title, spf(
-		"(%d points by %s | %d | %d comments)",
+		"(%d points by %s | %d hour ago | %d | %d comments)",
 		submission.Score,
 		submission.By,
 		submissionTime,
