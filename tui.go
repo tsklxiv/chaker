@@ -82,7 +82,7 @@ func returnCustomTitle(submission Submission) (string, string) {
 	}
 
 	return submission.Title, spf(
-		"(%d points by %s | %d hour ago | %d | %d comments)",
+		"(%d points by %s | %d hour ago | %d comments)",
 		submission.Score,
 		submission.By,
 		submissionTime,
