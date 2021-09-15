@@ -13,6 +13,8 @@
 - [Credits](#credits)
 
 ## Introduction
+<img src="./chaker_screenshot.jpg" alt="Chaker screenshot">
+
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/HoangTuan110/chaker) [![CodeFactor](https://www.codefactor.io/repository/github/hoangtuan110/chaker/badge)](https://www.codefactor.io/repository/github/hoangtuan110/chaker) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/HoangTuan110/chaker/Go)
