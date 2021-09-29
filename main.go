@@ -81,8 +81,8 @@ func Scrape(page int) []Submission {
 		err = json.Unmarshal([]byte(jsonData), &submission)
 		checkErr(err)
 
-		// In case that the submission doesn't have an URL (like with a local post and not a link)
-		// We will just give the post link instead
+		// In case that the submission doesn't have an URL (like with an "Ask HN")
+		// We will just give the link to the thread instead
 		if submission.URL == "" {
 			submission.URL = spf("https://news.ycombinator.com/item?id=%s", id)
 		}
