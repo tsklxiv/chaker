@@ -13,7 +13,7 @@
 - [Credits](#credits)
 
 ## Introduction
-<img src="./chaker_screenshot.jpg" alt="Chaker screenshot">
+<img src="https://files.catbox.moe/vba2h7.jpg" alt="Chaker screenshot">
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
